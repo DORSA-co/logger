@@ -5,7 +5,7 @@ import dorsa_logger
 
 if __name__ == "__main__":
     # Define Logs
-    logger_obj = dorsa_logger(
+    logger_obj = dorsa_logger.logger(
         main_folderpath="./app_logs",
         date_type=dorsa_logger.date_types.AD_DATE,
         date_format=dorsa_logger.date_formats.YYMMDD,
@@ -18,11 +18,11 @@ if __name__ == "__main__":
     )
 
     # Define log message with given key
-    log_msg = dorsa_logger.log_message(level=dorsa_logger.log_levels.ERROR, message="An error occurred", code="ERR001")
-    key1 = logger_obj.define_log(log_msg, key='MY_KEY')
-    logger_obj.create_new_log(message=key1)
+    log_msg = dorsa_logger.log_message(level=dorsa_logger.log_levels.ERROR, message="An error occurred", code="ERR000")
+    key = logger_obj.defined_log_messages.add_log_message(log_msg, key=3)
+    logger_obj.create_new_log(message=key)
     
     # Define log message with automatic key
-    log_msg = dorsa_logger.log_message(level=dorsa_logger.log_levels.ERROR, message="An error occurred", code="ERR000")
-    key2 = logger_obj.define_log(log_msg)
-    logger_obj.create_new_log(message=key2)
+    log_msg = dorsa_logger.log_message(level=dorsa_logger.log_levels.ERROR, message="An error occurred", code="ERR001")
+    key = logger_obj.defined_log_messages.add_log_message(log_msg)
+    logger_obj.create_new_log(message=key)

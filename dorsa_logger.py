@@ -1,62 +1,64 @@
 import logging
 import os
+from tkinter.messagebox import NO
 from persiantools.jdatetime import JalaliDate
 import datetime
+from functools import wraps
 
 
-class ErrorAndWarnings:
+class errors_and_warnings:
     """Contains static methods that return error and warning messages for logging."""
 
     @staticmethod
-    def undefined_date_type():
+    def undefined_date_type() -> str:
         """Returns an error message indicating that the given date type is undefined."""
 
         return "The given date type is undefined. select a type from date_types class."
 
     @staticmethod
-    def undefined_date_format():
+    def undefined_date_format() -> str:
         """Returns an error message indicating that the given date format is undefined."""
 
         return "The given date format is undefined. select a format from date_formats class."
 
     @staticmethod
-    def undefined_time_format():
+    def undefined_time_format() -> str:
         """Returns an error message indicating that the given time format is undefined."""
 
         return "The given time format is undefined. select a format from time_formats class."
 
     @staticmethod
-    def undefined_log_level():
+    def undefined_log_level() -> str:
         """Returns an error message indicating that the given log level is undefined."""
         
         return "The given log level is undefined. select a level from log_levels class."
 
     @staticmethod
-    def incorrect_message_datatype():
+    def incorrect_message_datatype() -> str:
         """Returns an error message indicating that the given message must be an instance of the log_message class."""
 
         return "The given message must be an instance of the log_message class."
 
     @staticmethod
-    def incorrect_key_datatype():
+    def incorrect_key_datatype() -> str:
         """Returns an error message indicating that the given key must be a string."""
 
         return "The given key must be a string."
 
     @staticmethod
-    def defined_key():
+    def defined_key() -> str:
         """Returns a warning message indicating that the given key is already defined."""
 
         return "The given key is already defined."
 
     @staticmethod
-    def incorrect_input_datatype():
+    def incorrect_input_datatype() -> str:
         """Returns an error message indicating that the given input must be a string or an instance of the log_message class."""
 
         return "The given input must be string or an instance of the log_message class."
 
     @staticmethod
-    def undefined_key():
+    def undefined_key() -> str:
         """Returns an error message indicating that the given key is undefined."""
         
         return "The given key is undefined."
@@ -112,13 +114,10 @@ class date:
 
         Args:
             type (str): The type of date (AD_DATE or SOLAR_DATE).
-        
-        Raises:
-            AssertionError: If the given type is undefined.
         """
 
         types = [v for k, v in vars(date_types).items() if not(k.startswith('__'))]
-        assert type in types, ErrorAndWarnings.undefined_date_type()
+        assert type in types, errors_and_warnings.undefined_date_type()
         self.date_type = type
 
     def set_date_format(self, format: str) -> None:
@@ -126,13 +125,10 @@ class date:
 
         Args:
             format (str): The format of the date (YYMMDD, DDMMYY, or MMDDYY).
-        
-        Raises:
-            AssertionError: If the given format is undefined.
         """
 
         formats = [v for k, v in vars(date_formats).items() if not(k.startswith('__'))]
-        assert format in formats, ErrorAndWarnings.undefined_date_format()
+        assert format in formats, errors_and_warnings.undefined_date_format()
         self.date_format = format
 
     def update_date(self) -> None:
@@ -201,12 +197,10 @@ class time:
 
         Args:
             format (str): The format of the time (HHMM, HHMMSS, or HHMMSSMM).
-
-        Raises:
-            AssertionError: If the given format is undefined.
         """
+
         formats = [v for k, v in vars(time_formats).items() if not(k.startswith('__'))]
-        assert format in formats, ErrorAndWarnings.undefined_time_format()
+        assert format in formats, errors_and_warnings.undefined_time_format()
         self.time_format = format
 
     def update_time(self):
@@ -309,6 +303,118 @@ class log_message:
 
         return self.level == __o.level and self.message == __o.message and self.code == __o.code
 
+class defined_log_messages:
+    def __init__(self) -> None:
+        self.defined_log_messages = {}
+        self.key = '0'
+
+    def add_log_message(self, message, key=None):
+        """Add a log message with an optional key. If no key is given, a unique key will be selected automatically.
+
+        Args:
+            message (object): The log message to define.
+            key (str, optional): The key to associate with the log message. Defaults to None.
+
+        Returns:
+            str: The key associated with the defined log message.
+        """
+
+        assert isinstance(message, log_message), errors_and_warnings.incorrect_message_datatype()
+        if message in self.defined_log_messages.values():
+            key = [k for k, v in self.defined_log_messages.items() if v == message]
+            return key[0]
+
+        if key is None:
+            while self.key in self.defined_log_messages.keys(): self.key = str(int(self.key) + 1)
+            key = self.key
+        else:
+            assert isinstance(key, str), errors_and_warnings.incorrect_key_datatype()
+            assert key not in self.defined_log_messages.keys(), errors_and_warnings.defined_key()
+
+        self.defined_log_messages[key] = message
+        return key
+
+    def get_defined_log_key(self, message: object) -> str:
+        """Returns the key of the given message if already defined.
+
+        Args:
+            message (object): The defined log message.
+
+        Returns:
+            str: The key associated with the defined log message. None if the message was not defined.
+        """
+
+        assert isinstance(message, log_message), errors_and_warnings.incorrect_message_datatype()
+        if message in self.defined_log_messages.values():
+            key = [k for k, v in self.defined_log_messages.items() if v == message]
+            return key[0]
+        return None
+
+    def get_defined_log_message(self, key: str) -> str:
+        """Returns defined log message related to given key.
+
+        Args:
+            key (str): Key of log message.
+
+        Returns:
+            str: Log message related to given key.
+        """
+
+        assert key in self.defined_log_messages.keys(), errors_and_warnings.undefined_key()
+        return self.defined_log_messages[key]
+
+    def delete_defined_log(self, key: object) -> None:
+        """Deletes a defined log message.
+
+        Args:
+            key (object): The key of the log message to delete.
+        """
+
+        assert key in self.defined_log_messages.keys(), errors_and_warnings.undefined_key()
+        self.defined_log_messages.pop(key)
+
+class const_log_messages:
+    """Contains static methods that return constant messages for logging."""
+
+    @staticmethod
+    def get_func_start_message(func_name: str) -> object:
+        """Returns a message for logging start of function.
+
+        Args:
+            func_name (str): Name of function.
+
+        Returns:
+            object: log message object.
+        """
+
+        return log_message(level=log_levels.INFO, message='Function {} started'.format(func_name))
+
+    @staticmethod
+    def get_func_exception_message(func_name: str) -> object:
+        """Returns a message for logging exception of function.
+
+        Args:
+            func_name (str): Name of function.
+
+        Returns:
+            object: log message object.
+        """
+
+        return log_message(level=log_levels.EXCEPTION, message='Function {} exception'.format(func_name))
+
+    @staticmethod
+    def get_func_end_message(func_name: str) -> object:
+        """Returns a message for logging end of function.
+
+        Args:
+            func_name (str): Name of function.
+
+        Returns:
+            object: log message object.
+        """
+
+        return log_message(level=log_levels.INFO, message='Function {} ended'.format(func_name))
+
 class logger:
     def __init__(
         self, 
@@ -372,18 +478,14 @@ class logger:
         # set line seperator
         self.set_line_seperator(line_seperator)
 
-        # private dict for store predefined log messages
-        self.__defined_log_messages = {}
-        self.__key = '0'
+        # defined logs 
+        self.defined_log_messages = defined_log_messages()
 
     def set_main_folderpath(self, main_folderpath) -> None:
         """Sets the main folder path for storing log files.
 
         Args:
             main_folderpath (str): The main folder path to store log files.
-
-        Returns:
-            None
         """
 
         self.main_folderpath = main_folderpath
@@ -394,9 +496,6 @@ class logger:
 
     def set_log_paths(self) -> None:
         """Sets the log file paths based on the current date.
-
-        Returns:
-            None
         """
 
         self.daily_folderpath = self.date.get_date_string(sep='-')
@@ -408,9 +507,6 @@ class logger:
 
         Args:
             console_print (bool): Whether to print log messages to the console.
-
-        Returns:
-            None
         """
 
         self.console_print = console_print
@@ -424,13 +520,10 @@ class logger:
 
         Args:
             level (int): The log level for file logging.
-
-        Returns:
-            None
         """
 
         levels = [v for k, v in vars(log_levels).items() if not(k.startswith('__'))]
-        assert level in levels, ErrorAndWarnings.undefined_log_level()
+        assert level in levels, errors_and_warnings.undefined_log_level()
         self.file_level = level
         self.file_handler.setLevel(self.file_level)
 
@@ -439,13 +532,10 @@ class logger:
 
         Args:
             level (int): The log level for console logging.
-
-        Returns:
-            None
         """
 
         levels = [v for k, v in vars(log_levels).items() if not(k.startswith('__'))]
-        assert level in levels, ErrorAndWarnings.undefined_log_level()
+        assert level in levels, errors_and_warnings.undefined_log_level()
         self.console_level = level
         self.console_handler.setLevel(self.console_level)
 
@@ -454,9 +544,6 @@ class logger:
 
         Args:
             current_username (str): The current username for log messages.
-
-        Returns:
-            None
         """
 
         self.current_username = current_username
@@ -466,120 +553,78 @@ class logger:
 
         Args:
             sep (str): The separator character for log message lines.
-
-        Returns:
-            None
         """
 
-        self.line_seperator = sep
+        self.line_seperator = sep 
 
-    def define_log(self, message: object, key: str = None) -> str:
-        """Defines a log message with an optional key. If no key is given, a unique key will be selected automatically.
-
-        Args:
-            message (object): The log message to define.
-            key (str, optional): The key to associate with the log message. Defaults to None.
-
-        Returns:
-            str: The key associated with the defined log message.
-        """
-
-        assert isinstance(message, log_message), ErrorAndWarnings.incorrect_message_datatype()
-        if message in self.__defined_log_messages.values():
-            key = [k for k, v in self.__defined_log_messages.items() if v == message]
-            return key[0]
-
-        if key is None:
-            while self.__key in self.__defined_log_messages.keys(): self.__key = str(int(self.__key) + 1)
-            key = self.__key
-        else:
-            assert isinstance(key, str), ErrorAndWarnings.incorrect_key_datatype()
-            assert key not in self.__defined_log_messages.keys(), ErrorAndWarnings.defined_key()
-
-        self.__defined_log_messages[key] = message
-        return key
-
-    def delete_defined_log(self, key: object) -> None:
-        """
-        Deletes a defined log message.
-
-        Args:
-            key (object): The key of the log message to delete.
-
-        Returns:
-            None
-        """
-        self.__defined_log_messages.pop(key)
-
-    def get_defined_log_key(self, message: object) -> str:
-        """Returns the key of the given message if already defined.
-
-        Args:
-            message (object): The defined log message.
-
-        Returns:
-            str: The key associated with the defined log message. None if the message was not defined.
-        """
-
-        assert isinstance(message, log_message), ErrorAndWarnings.incorrect_message_datatype()
-        if message in self.__defined_log_messages.values():
-            key = [k for k, v in self.__defined_log_messages.items() if v == message]
-            return key[0]
-        return None
-
-    def function_start_decorator(self, message: object) -> None:
+    def function_start_decorator(self, message: object = None) -> None:
         """ Decorator for logging the start of a function.
 
         Args:
             message (object): The key of defined log message or log message to log at the start of the function.
+        """
+
+        def decorator(func):
+            @wraps(func)
+            def wrapper(*args, **kwargs):
+                if not message:
+                    msg = const_log_messages.get_func_start_message(func.__name__)
+                else:
+                    msg = message
+                self.create_new_log(message=msg)
+                result = func(*args, **kwargs)
+                return result
+            return wrapper
+        return decorator
+
+    def function_exception_decorator(self, message: object = None, with_handling: bool = True) -> None:
+        """Decorator for logging exceptions in a function.
+
+        Args:
+            message (object, optional): The key of defined log message or log message to log when an exception occurs. Defaults to None.
+            with_handling (bool, optional): Whether to handle the exception or re-raise it. Defaults to True.
 
         Returns:
             None
         """
 
         def decorator(func):
-            def wrapper(*args, **kwargs):
-                self.create_new_log(message=message)
-                func(*args, **kwargs)
-            return wrapper
-        return decorator
-
-    def function_exception_decorator(self, message: object, with_handling: bool) -> None:
-        """Decorator for logging exceptions in a function.
-
-        Args:
-            message (object): The key of defined log message or log message to log when an exception occurs.
-            with_handling (bool): Whether to handle the exception or re-raise it.
-
-        Returns:
-            None
-        """
-
-        def decorator(fun):
+            @wraps(func)
             def wrapper(*args, **kwargs):
                 try:
-                    fun(*args, **kwargs)
+                    result = func(*args, **kwargs)
+                    return result
                 except Exception as e:
-                   self.create_new_log(message=message)
-                   if not with_handling:
+                    if not message:
+                        msg = const_log_messages.get_func_exception_message(func.__name__)
+                    else:
+                        msg = message
+                    self.create_new_log(message=msg)
+                    if not with_handling:
                         raise e
             return wrapper
         return decorator
 
-    def function_end_decorator(self, message: object) -> None:
+    def function_end_decorator(self, message: object = None) -> None:
         """Decorator for logging the end of a function.
 
         Args:
-            message (object): The key of defined log message to log at the end of the function.
+            message (object, optional): The key of defined log message to log at the end of the function. Defaults to None.
 
         Returns:
             None
         """
 
-        def decorator(fun):
+        def decorator(func):
+            @wraps(func)
             def wrapper(*args, **kwargs):
-                fun(*args, **kwargs)
-                self.create_new_log(message=message)
+                result = func(*args, **kwargs)
+                if not message:
+                    msg = const_log_messages.get_func_end_message(func.__name__)
+                else:
+                    msg = message
+                self.create_new_log(message=msg)
+                return result
             return wrapper
         return decorator
 
@@ -588,15 +633,11 @@ class logger:
 
         Args:
             message (object): The key of defined log message or log message to log.
-
-        Returns:
-            None
         """
 
-        assert isinstance(message, str) ^ isinstance(message, log_message), ErrorAndWarnings.incorrect_input_datatype()
+        assert isinstance(message, str) ^ isinstance(message, log_message), errors_and_warnings.incorrect_input_datatype()
         if isinstance(message, str):
-            assert message in self.__defined_log_messages.keys(), ErrorAndWarnings.undefined_key()
-            msg = self.__defined_log_messages[message]
+            msg = self.defined_log_messages.get_defined_log_message(message)
         else:
             msg = message
 

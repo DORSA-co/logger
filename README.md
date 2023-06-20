@@ -53,7 +53,7 @@ logger_obj.create_new_log(message=log_msg)
 You can define and use predefined log messages. To define a log message, follow these steps:
 1.  Define a log message:
 ```python
-key = logger_obj.define_log(log_msg, key='MY_KEY')
+key = logger_obj.defined_logs.add_log_message(log_msg, key='MY_KEY')
 ```
 If you don't define any key, key is assigned automatically. 
 
@@ -67,16 +67,16 @@ This will log the predefined message with the specified log level. for more deta
 
 You can use decorators to log start, end or exceptions of a function. To use decorators, define your function as follow:
 ```python
-@logger_obj.function_start_decorator(dorsa_logger.log_message(level=dorsa_logger.log_levels.INFO, message="Function started.", code="ERR000"))
-@logger_obj.function_end_decorator(dorsa_logger.log_message(level=dorsa_logger.log_levels.INFO, message="Function finished.", code="ERR001"))
-@logger_obj.function_exception_decorator(dorsa_logger.log_message(level=dorsa_logger.log_levels.EXCEPTION, message="An exception occurred.", code="ERR002"), with_handling=True)
+@logger_obj.function_start_decorator()
+@logger_obj.function_exception_decorator()
+@logger_obj.function_end_decorator()
 def  test(a, b):
 	res = a*b + 20 + a**b
 	print('In the function')
 	raise  Exception('This is a fake exception')
 	return res
 ```
-After calling function the start, end and exceptions will be logged with specified messages. for more detailes see [Example3](Examples/example3.py)
+After calling function the start, exceptions and end will be logged with defined messages. you can also specify your own message. for more detailes see [Example3](Examples/example3.py)
 
 ## Log Levels
 
