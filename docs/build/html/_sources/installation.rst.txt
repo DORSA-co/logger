@@ -3,14 +3,13 @@ Installation
 
 Requirement
 ^^^^^^^^^^^^
-Logger requires the following modules:
+Logger requires the following module:
 
-* functools
 * persiantools
 
 .. note::
 
-   All requirements are automatically installed when you install the logger module.
+   The requirement is automatically installed when you install the logger module.
 
 
 Install
