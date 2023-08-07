@@ -56,6 +56,15 @@ You can change date_type using :py:func:`dorsa_logger.date.set_date_type` method
 
    logger_obj.date.set_date_type(dorsa_logger.date_types.SOLAR_DATE)
 
+.. code-block:: python
+
+   logger_obj.create_new_log(message=log_msg)
+
+.. code-block:: console
+
+   $ ERROR - 1402-05-16-16-19-27 - anonymous : (ERR000) An error occurred
+   -----------------------------------------------------------------------------------
+
 Date Format
 """"""""""""
 The available date formats specified in the date_formats class are as follows:
@@ -79,6 +88,15 @@ You can change date_format using :py:func:`dorsa_logger.date.set_date_format` me
 .. code-block:: python
 
    logger_obj.date.set_date_format(dorsa_logger.date_formats.MMDDYY)
+
+.. code-block:: python
+
+   logger_obj.create_new_log(message=log_msg)
+
+.. code-block:: console
+
+   $ ERROR - 05-16-1402-16-22-37 - anonymous : (ERR000) An error occurred
+   -----------------------------------------------------------------------------------
 
 Time Format
 """"""""""""
@@ -104,6 +122,15 @@ You can change time_format using :py:func:`dorsa_logger.time.set_time_format` me
 
    logger_obj.time.set_time_format(dorsa_logger.time_formats.HHMMSSMM)
 
+.. code-block:: python
+
+   logger_obj.create_new_log(message=log_msg)
+
+.. code-block:: console
+
+   $ ERROR - 05-16-1402-16-25-06.467736 - anonymous : (ERR000) An error occurred
+   -----------------------------------------------------------------------------------
+
 .. _logLevels-subsection:
 
 Log Levels
@@ -122,6 +149,11 @@ The available log levels specified in the log_levels class are as follows:
 
 File Level
 """""""""""
+File level refers to the log level used for writing log messages to the log files.
+When a log message is created, its severity level is compared with the file level set in the logger object. 
+If the message's severity is higher than or equal to the file level, it will be recorded in the log file; 
+otherwise, it will be ignored.
+
 The default value of file_level parameter is DEBUG.
 You can set this parameter when initializing the module:
 
@@ -140,6 +172,12 @@ You can change file_level using :py:func:`dorsa_logger.logger.set_file_level` me
 
 Console Level
 """"""""""""""
+Console level refers to the log level used for displaying log messages on the console (standard output).
+Similar to the file level, when a log message is created, 
+its severity level is compared with the console level set in the logger object. 
+If the message's severity is higher than or equal to the console level, 
+it will be printed on the console; otherwise, it will not be displayed.
+
 The default value of console_level parameter is DEBUG.
 You can set this parameter when initializing the module:
 
@@ -198,6 +236,15 @@ You can change current_username using :py:func:`dorsa_logger.logger.set_current_
 
    logger_obj.set_current_user('admin')
 
+.. code-block:: python
+
+   logger_obj.create_new_log(message=log_msg)
+
+.. code-block:: console
+
+   $ ERROR - 05-16-1402-16-25-06.467736 - admin : (ERR000) An error occurred
+   -----------------------------------------------------------------------------------
+
 .. _lineSeperator-subsection:
 
 Line Separator
@@ -220,6 +267,15 @@ You can change line_seperator using :py:func:`dorsa_logger.logger.set_line_seper
 .. code-block:: python
 
    logger_obj.set_line_seperator('*')
+
+.. code-block:: python
+
+   logger_obj.create_new_log(message=log_msg)
+
+.. code-block:: console
+
+   $ ERROR - 05-16-1402-16-25-06.467736 - admin : (ERR000) An error occurred
+   ***********************************************************************************
 
 Defined Log Messages
 ^^^^^^^^^^^^^^^^^^^^^

@@ -13,7 +13,7 @@ if __name__ == "__main__":
         file_level=dorsa_logger.log_levels.DEBUG,
         console_level=dorsa_logger.log_levels.DEBUG,
         console_print=True,
-        current_username="admin",
+        # current_username="admin",
         line_seperator='-'
     )
 

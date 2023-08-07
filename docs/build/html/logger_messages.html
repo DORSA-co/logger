@@ -129,6 +129,13 @@ If the message is already defined, the method returns the corresponding key.</p>
 </pre></div>
 </div>
 <p>You can then pass this key to the <a class="reference internal" href="logger_src.html#dorsa_logger.logger.create_new_log" title="dorsa_logger.logger.create_new_log"><code class="xref py py-func docutils literal notranslate"><span class="pre">dorsa_logger.logger.create_new_log()</span></code></a> method for logging.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">logger_obj</span><span class="o">.</span><span class="n">create_new_log</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="n">log_msg</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ERROR<span class="w"> </span>-<span class="w"> </span><span class="m">2023</span>-08-07-16-53-39<span class="w"> </span>-<span class="w"> </span>anonymous<span class="w"> </span>:<span class="w"> </span><span class="o">(</span>ERR000<span class="o">)</span><span class="w"> </span>An<span class="w"> </span>error<span class="w"> </span>occurred
+<span class="go"> -----------------------------------------------------------------------------------</span>
+</pre></div>
+</div>
 <p>To find the key associated with a predefined message, you can use
 <a class="reference internal" href="logger_src.html#dorsa_logger.defined_log_messages.get_defined_log_key" title="dorsa_logger.defined_log_messages.get_defined_log_key"><code class="xref py py-func docutils literal notranslate"><span class="pre">dorsa_logger.defined_log_messages.get_defined_log_key()</span></code></a> method.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">key</span> <span class="o">=</span> <span class="n">logger_obj</span><span class="o">.</span><span class="n">defined_log_messages</span><span class="o">.</span><span class="n">get_defined_log_key</span><span class="p">(</span><span class="n">log_msg</span><span class="p">)</span>

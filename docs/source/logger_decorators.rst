@@ -3,6 +3,11 @@ Logger Decorators
 The logger class provides decorators to log the start, end, or exceptions of functions. 
 You can use these decorators to automatically log function activities.
 
+.. note::
+
+   If you want to use more than one decorator for your function, 
+   please follow the start, exception, and end order for proper functionality.
+
 Function Start Decorator
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 The :py:func:`dorsa_logger.logger.function_start_decorator` decorator is used to log a message 

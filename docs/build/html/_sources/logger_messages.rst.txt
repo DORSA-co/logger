@@ -54,6 +54,15 @@ If the message is already defined, the method returns the corresponding key.
 
 You can then pass this key to the :py:func:`dorsa_logger.logger.create_new_log` method for logging.
 
+.. code-block:: python
+
+   logger_obj.create_new_log(message=log_msg)
+
+.. code-block:: console
+
+   $ ERROR - 2023-08-07-16-53-39 - anonymous : (ERR000) An error occurred
+    -----------------------------------------------------------------------------------
+
 To find the key associated with a predefined message, you can use
 :py:func:`dorsa_logger.defined_log_messages.get_defined_log_key` method.
 

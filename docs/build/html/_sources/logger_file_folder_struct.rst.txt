@@ -5,6 +5,14 @@ based on the current date and time. This structure helps keep log entries easily
 the date and time of their creation and makes it convenient for developers to analyze and troubleshoot 
 issues and track system behavior over time.
 
+The overall logger folder and file structure is as follows:
+
+.. code-block:: text
+
+    Main Folder/
+        |___ Daily Folder/
+                 |___ Log File
+
 Main Folder
 ^^^^^^^^^^^^
 The main folder is the starting point for storing all log files. 

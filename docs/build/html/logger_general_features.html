@@ -143,6 +143,13 @@ You can set this parameter when initializing the module:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">logger_obj</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">set_date_type</span><span class="p">(</span><span class="n">dorsa_logger</span><span class="o">.</span><span class="n">date_types</span><span class="o">.</span><span class="n">SOLAR_DATE</span><span class="p">)</span>
 </pre></div>
 </div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">logger_obj</span><span class="o">.</span><span class="n">create_new_log</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="n">log_msg</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ERROR<span class="w"> </span>-<span class="w"> </span><span class="m">1402</span>-05-16-16-19-27<span class="w"> </span>-<span class="w"> </span>anonymous<span class="w"> </span>:<span class="w"> </span><span class="o">(</span>ERR000<span class="o">)</span><span class="w"> </span>An<span class="w"> </span>error<span class="w"> </span>occurred
+<span class="go">-----------------------------------------------------------------------------------</span>
+</pre></div>
+</div>
 </section>
 <section id="date-format">
 <h3>Date Format<a class="headerlink" href="#date-format" title="Permalink to this heading"></a></h3>
@@ -162,6 +169,13 @@ You can set this parameter when initializing the module:</p>
 </div>
 <p>You can change date_format using <a class="reference internal" href="logger_src.html#dorsa_logger.date.set_date_format" title="dorsa_logger.date.set_date_format"><code class="xref py py-func docutils literal notranslate"><span class="pre">dorsa_logger.date.set_date_format()</span></code></a> method.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">logger_obj</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">set_date_format</span><span class="p">(</span><span class="n">dorsa_logger</span><span class="o">.</span><span class="n">date_formats</span><span class="o">.</span><span class="n">MMDDYY</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">logger_obj</span><span class="o">.</span><span class="n">create_new_log</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="n">log_msg</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ERROR<span class="w"> </span>-<span class="w"> </span><span class="m">05</span>-16-1402-16-22-37<span class="w"> </span>-<span class="w"> </span>anonymous<span class="w"> </span>:<span class="w"> </span><span class="o">(</span>ERR000<span class="o">)</span><span class="w"> </span>An<span class="w"> </span>error<span class="w"> </span>occurred
+<span class="go">-----------------------------------------------------------------------------------</span>
 </pre></div>
 </div>
 </section>
@@ -185,6 +199,13 @@ You can set this parameter when initializing the module:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">logger_obj</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">set_time_format</span><span class="p">(</span><span class="n">dorsa_logger</span><span class="o">.</span><span class="n">time_formats</span><span class="o">.</span><span class="n">HHMMSSMM</span><span class="p">)</span>
 </pre></div>
 </div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">logger_obj</span><span class="o">.</span><span class="n">create_new_log</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="n">log_msg</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ERROR<span class="w"> </span>-<span class="w"> </span><span class="m">05</span>-16-1402-16-25-06.467736<span class="w"> </span>-<span class="w"> </span>anonymous<span class="w"> </span>:<span class="w"> </span><span class="o">(</span>ERR000<span class="o">)</span><span class="w"> </span>An<span class="w"> </span>error<span class="w"> </span>occurred
+<span class="go">-----------------------------------------------------------------------------------</span>
+</pre></div>
+</div>
 </section>
 </section>
 <section id="log-levels">
@@ -202,6 +223,10 @@ respectively. Logs with a lower level than the specified level will be ignored.<
 </ul>
 <section id="file-level">
 <h3>File Level<a class="headerlink" href="#file-level" title="Permalink to this heading"></a></h3>
+<p>File level refers to the log level used for writing log messages to the log files.
+When a log message is created, its severity level is compared with the file level set in the logger object.
+If the message’s severity is higher than or equal to the file level, it will be recorded in the log file;
+otherwise, it will be ignored.</p>
 <p>The default value of file_level parameter is DEBUG.
 You can set this parameter when initializing the module:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">logger_obj</span> <span class="o">=</span> <span class="n">dorsa_logger</span><span class="o">.</span><span class="n">logger</span><span class="p">(</span>
@@ -217,6 +242,11 @@ You can set this parameter when initializing the module:</p>
 </section>
 <section id="console-level">
 <h3>Console Level<a class="headerlink" href="#console-level" title="Permalink to this heading"></a></h3>
+<p>Console level refers to the log level used for displaying log messages on the console (standard output).
+Similar to the file level, when a log message is created,
+its severity level is compared with the console level set in the logger object.
+If the message’s severity is higher than or equal to the console level,
+it will be printed on the console; otherwise, it will not be displayed.</p>
 <p>The default value of console_level parameter is DEBUG.
 You can set this parameter when initializing the module:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">logger_obj</span> <span class="o">=</span> <span class="n">dorsa_logger</span><span class="o">.</span><span class="n">logger</span><span class="p">(</span>
@@ -264,6 +294,13 @@ You can set this parameter when initializing the module:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">logger_obj</span><span class="o">.</span><span class="n">set_current_user</span><span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">logger_obj</span><span class="o">.</span><span class="n">create_new_log</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="n">log_msg</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ERROR<span class="w"> </span>-<span class="w"> </span><span class="m">05</span>-16-1402-16-25-06.467736<span class="w"> </span>-<span class="w"> </span>admin<span class="w"> </span>:<span class="w"> </span><span class="o">(</span>ERR000<span class="o">)</span><span class="w"> </span>An<span class="w"> </span>error<span class="w"> </span>occurred
+<span class="go">-----------------------------------------------------------------------------------</span>
+</pre></div>
+</div>
 </section>
 <section id="line-separator">
 <span id="lineseperator-subsection"></span><h2>Line Separator<a class="headerlink" href="#line-separator" title="Permalink to this heading"></a></h2>
@@ -279,6 +316,13 @@ You can set this parameter when initializing the module:</p>
 </div>
 <p>You can change line_seperator using <a class="reference internal" href="logger_src.html#dorsa_logger.logger.set_line_seperator" title="dorsa_logger.logger.set_line_seperator"><code class="xref py py-func docutils literal notranslate"><span class="pre">dorsa_logger.logger.set_line_seperator()</span></code></a> method.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">logger_obj</span><span class="o">.</span><span class="n">set_line_seperator</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">logger_obj</span><span class="o">.</span><span class="n">create_new_log</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="n">log_msg</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ERROR<span class="w"> </span>-<span class="w"> </span><span class="m">05</span>-16-1402-16-25-06.467736<span class="w"> </span>-<span class="w"> </span>admin<span class="w"> </span>:<span class="w"> </span><span class="o">(</span>ERR000<span class="o">)</span><span class="w"> </span>An<span class="w"> </span>error<span class="w"> </span>occurred
+<span class="go">***********************************************************************************</span>
 </pre></div>
 </div>
 </section>
