@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Logger General Features &mdash; Logger 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Logger Folder and File Structure" href="logger_file_folder_struct.html" />
+    <link rel="prev" title="Quick Start" href="quick_start.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Logger
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Usage:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick_start.html">Quick Start</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Logger General Features</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#main-folder-path">Main Folder Path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#date-and-time">Date and Time</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#date-type">Date Type</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#date-format">Date Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#time-format">Time Format</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#log-levels">Log Levels</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#file-level">File Level</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#console-level">Console Level</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#console-printing">Console Printing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#current-username">Current Username</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#line-separator">Line Separator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#defined-log-messages">Defined Log Messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#logging-decorators">Logging Decorators</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="logger_file_folder_struct.html">Logger Folder and File Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logger_messages.html">Logger Messages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logger_decorators.html">Logger Decorators</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Sources:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="logger_src.html">Logger Classes</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Logger</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Logger General Features</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/logger_general_features.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="logger-general-features">
+<h1>Logger General Features<a class="headerlink" href="#logger-general-features" title="Permalink to this heading"></a></h1>
+<p>The <strong>Logger</strong> module offers various features and options to customize the logging behavior
+according to the needs of the developer. Below is an explanation of the general features
+and options available in this module:</p>
+<section id="main-folder-path">
+<span id="mainfolderpath-subsection"></span><h2>Main Folder Path<a class="headerlink" href="#main-folder-path" title="Permalink to this heading"></a></h2>
+<p>The main_folderpath parameter allows you to specify the main folder
+where the log files will be stored. This folder will be created if it does not exist.
+You need to specify main_folderpath parameter when initializing the module:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">logger_obj</span> <span class="o">=</span> <span class="n">dorsa_logger</span><span class="o">.</span><span class="n">logger</span><span class="p">(</span>
+     <span class="n">main_folderpath</span><span class="o">=</span><span class="s2">&quot;./app_logs&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>You can change specified main_folderpath using <a class="reference internal" href="logger_src.html#dorsa_logger.logger.set_main_folderpath" title="dorsa_logger.logger.set_main_folderpath"><code class="xref py py-func docutils literal notranslate"><span class="pre">dorsa_logger.logger.set_main_folderpath()</span></code></a> method.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">logger_obj</span><span class="o">.</span><span class="n">set_main_folderpath</span><span class="p">(</span><span class="s1">&#39;./app_logs2&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="date-and-time">
+<span id="dateandtime-subsection"></span><h2>Date and Time<a class="headerlink" href="#date-and-time" title="Permalink to this heading"></a></h2>
+<p>The date_type, date_format, and time_format parameters enable you to define the type and format of the date and time
+used in the name and contents of the log file. This customization provides flexibility to match your preferred date
+and time representation.</p>
+<section id="date-type">
+<h3>Date Type<a class="headerlink" href="#date-type" title="Permalink to this heading"></a></h3>
+<p>The available date types specified in the date_types class are as follows:</p>
+<ul class="simple">
+<li><p>SOLAR_DATE</p></li>
+<li><p>AD_DATE</p></li>
+</ul>
+<p>The default value of date_type parameter is AD_DATE.
+You can set this parameter when initializing the module:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">logger_obj</span> <span class="o">=</span> <span class="n">dorsa_logger</span><span class="o">.</span><span class="n">logger</span><span class="p">(</span>
+     <span class="n">main_folderpath</span><span class="o">=</span><span class="s2">&quot;./app_logs&quot;</span><span class="p">,</span>
+     <span class="n">date_type</span><span class="o">=</span><span class="n">dorsa_logger</span><span class="o">.</span><span class="n">date_types</span><span class="o">.</span><span class="n">SOLAR_DATE</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>You can change date_type using <a class="reference internal" href="logger_src.html#dorsa_logger.date.set_date_type" title="dorsa_logger.date.set_date_type"><code class="xref py py-func docutils literal notranslate"><span class="pre">dorsa_logger.date.set_date_type()</span></code></a> method.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">logger_obj</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">set_date_type</span><span class="p">(</span><span class="n">dorsa_logger</span><span class="o">.</span><span class="n">date_types</span><span class="o">.</span><span class="n">SOLAR_DATE</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="date-format">
+<h3>Date Format<a class="headerlink" href="#date-format" title="Permalink to this heading"></a></h3>
+<p>The available date formats specified in the date_formats class are as follows:</p>
+<ul class="simple">
+<li><p>MMDDYY (month-day-year)</p></li>
+<li><p>DDMMYY (day-month-year)</p></li>
+<li><p>YYMMDD (year-month-day)</p></li>
+</ul>
+<p>The default value of date_format parameter is YYMMDD.
+You can set this parameter when initializing the module:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">logger_obj</span> <span class="o">=</span> <span class="n">dorsa_logger</span><span class="o">.</span><span class="n">logger</span><span class="p">(</span>
+     <span class="n">main_folderpath</span><span class="o">=</span><span class="s2">&quot;./app_logs&quot;</span><span class="p">,</span>
+     <span class="n">date_format</span><span class="o">=</span><span class="n">dorsa_logger</span><span class="o">.</span><span class="n">date_formats</span><span class="o">.</span><span class="n">MMDDYY</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>You can change date_format using <a class="reference internal" href="logger_src.html#dorsa_logger.date.set_date_format" title="dorsa_logger.date.set_date_format"><code class="xref py py-func docutils literal notranslate"><span class="pre">dorsa_logger.date.set_date_format()</span></code></a> method.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">logger_obj</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">set_date_format</span><span class="p">(</span><span class="n">dorsa_logger</span><span class="o">.</span><span class="n">date_formats</span><span class="o">.</span><span class="n">MMDDYY</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="time-format">
+<h3>Time Format<a class="headerlink" href="#time-format" title="Permalink to this heading"></a></h3>
+<p>The available time formats specified in the time_formats class are as follows:</p>
+<ul class="simple">
+<li><p>HHMM (hour-minute)</p></li>
+<li><p>HHMMSS (hour-minute-second)</p></li>
+<li><p>HHMMSSMM (hour-minute-second-millisecond)</p></li>
+</ul>
+<p>The default value of time_format parameter is HHMMSS.
+You can set this parameter when initializing the module:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">logger_obj</span> <span class="o">=</span> <span class="n">dorsa_logger</span><span class="o">.</span><span class="n">logger</span><span class="p">(</span>
+     <span class="n">main_folderpath</span><span class="o">=</span><span class="s2">&quot;./app_logs&quot;</span><span class="p">,</span>
+     <span class="n">time_format</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">time_formats</span><span class="o">.</span><span class="n">HHMMSSMM</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>You can change time_format using <a class="reference internal" href="logger_src.html#dorsa_logger.time.set_time_format" title="dorsa_logger.time.set_time_format"><code class="xref py py-func docutils literal notranslate"><span class="pre">dorsa_logger.time.set_time_format()</span></code></a> method.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">logger_obj</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">set_time_format</span><span class="p">(</span><span class="n">dorsa_logger</span><span class="o">.</span><span class="n">time_formats</span><span class="o">.</span><span class="n">HHMMSSMM</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="log-levels">
+<span id="loglevels-subsection"></span><h2>Log Levels<a class="headerlink" href="#log-levels" title="Permalink to this heading"></a></h2>
+<p>The file_level and console_level parameters allow you to set the log levels for file logging and console logging,
+respectively. Logs with a lower level than the specified level will be ignored.</p>
+<p>The available log levels specified in the log_levels class are as follows:</p>
+<ul class="simple">
+<li><p>DEBUG</p></li>
+<li><p>INFO</p></li>
+<li><p>WARNING</p></li>
+<li><p>ERROR</p></li>
+<li><p>CRITICAL</p></li>
+<li><p>EXCEPTION</p></li>
+</ul>
+<section id="file-level">
+<h3>File Level<a class="headerlink" href="#file-level" title="Permalink to this heading"></a></h3>
+<p>The default value of file_level parameter is DEBUG.
+You can set this parameter when initializing the module:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">logger_obj</span> <span class="o">=</span> <span class="n">dorsa_logger</span><span class="o">.</span><span class="n">logger</span><span class="p">(</span>
+     <span class="n">main_folderpath</span><span class="o">=</span><span class="s2">&quot;./app_logs&quot;</span><span class="p">,</span>
+     <span class="n">file_level</span><span class="o">=</span><span class="n">dorsa_logger</span><span class="o">.</span><span class="n">log_levels</span><span class="o">.</span><span class="n">CRITICAL</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>You can change file_level using <a class="reference internal" href="logger_src.html#dorsa_logger.logger.set_file_level" title="dorsa_logger.logger.set_file_level"><code class="xref py py-func docutils literal notranslate"><span class="pre">dorsa_logger.logger.set_file_level()</span></code></a> method.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">logger_obj</span><span class="o">.</span><span class="n">set_file_level</span><span class="p">(</span><span class="n">dorsa_logger</span><span class="o">.</span><span class="n">log_levels</span><span class="o">.</span><span class="n">CRITICAL</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="console-level">
+<h3>Console Level<a class="headerlink" href="#console-level" title="Permalink to this heading"></a></h3>
+<p>The default value of console_level parameter is DEBUG.
+You can set this parameter when initializing the module:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">logger_obj</span> <span class="o">=</span> <span class="n">dorsa_logger</span><span class="o">.</span><span class="n">logger</span><span class="p">(</span>
+     <span class="n">main_folderpath</span><span class="o">=</span><span class="s2">&quot;./app_logs&quot;</span><span class="p">,</span>
+     <span class="n">console_level</span><span class="o">=</span><span class="n">dorsa_logger</span><span class="o">.</span><span class="n">log_levels</span><span class="o">.</span><span class="n">EXCEPTION</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>You can change console_level using <a class="reference internal" href="logger_src.html#dorsa_logger.logger.set_console_level" title="dorsa_logger.logger.set_console_level"><code class="xref py py-func docutils literal notranslate"><span class="pre">dorsa_logger.logger.set_console_level()</span></code></a> method.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">logger_obj</span><span class="o">.</span><span class="n">set_console_level</span><span class="p">(</span><span class="n">dorsa_logger</span><span class="o">.</span><span class="n">log_levels</span><span class="o">.</span><span class="n">EXCEPTION</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="console-printing">
+<h2>Console Printing<a class="headerlink" href="#console-printing" title="Permalink to this heading"></a></h2>
+<p>The console_print parameter determines whether log messages should also be printed to the console.
+Setting it to True enables console logging, while setting it to False disables it.</p>
+<p>The default value of console_print parameter is True.
+You can set this parameter when initializing the module:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">logger_obj</span> <span class="o">=</span> <span class="n">dorsa_logger</span><span class="o">.</span><span class="n">logger</span><span class="p">(</span>
+     <span class="n">main_folderpath</span><span class="o">=</span><span class="s2">&quot;./app_logs&quot;</span><span class="p">,</span>
+     <span class="n">console_print</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>You can change console_print using <a class="reference internal" href="logger_src.html#dorsa_logger.logger.set_console_print" title="dorsa_logger.logger.set_console_print"><code class="xref py py-func docutils literal notranslate"><span class="pre">dorsa_logger.logger.set_console_print()</span></code></a> method.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">logger_obj</span><span class="o">.</span><span class="n">set_console_print</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="current-username">
+<h2>Current Username<a class="headerlink" href="#current-username" title="Permalink to this heading"></a></h2>
+<p>The current_username parameter is used to associate a username with log messages,
+which can be helpful when identifying the source of log entries.</p>
+<p>The default value of current_username parameter is <em>anonymous</em>.
+You can set this parameter when initializing the module:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">logger_obj</span> <span class="o">=</span> <span class="n">dorsa_logger</span><span class="o">.</span><span class="n">logger</span><span class="p">(</span>
+     <span class="n">main_folderpath</span><span class="o">=</span><span class="s2">&quot;./app_logs&quot;</span><span class="p">,</span>
+     <span class="n">current_username</span><span class="o">=</span><span class="s2">&quot;admin&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>You can change current_username using <a class="reference internal" href="logger_src.html#dorsa_logger.logger.set_current_user" title="dorsa_logger.logger.set_current_user"><code class="xref py py-func docutils literal notranslate"><span class="pre">dorsa_logger.logger.set_current_user()</span></code></a> method.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">logger_obj</span><span class="o">.</span><span class="n">set_current_user</span><span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="line-separator">
+<span id="lineseperator-subsection"></span><h2>Line Separator<a class="headerlink" href="#line-separator" title="Permalink to this heading"></a></h2>
+<p>The line_seperator parameter sets the character(s) used to separate lines in the log messages,
+making the log entries more readable.</p>
+<p>The default value of line_seperator parameter is “-“.
+You can set this parameter when initializing the module:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">logger_obj</span> <span class="o">=</span> <span class="n">dorsa_logger</span><span class="o">.</span><span class="n">logger</span><span class="p">(</span>
+     <span class="n">main_folderpath</span><span class="o">=</span><span class="s2">&quot;./app_logs&quot;</span><span class="p">,</span>
+     <span class="n">line_seperator</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>You can change line_seperator using <a class="reference internal" href="logger_src.html#dorsa_logger.logger.set_line_seperator" title="dorsa_logger.logger.set_line_seperator"><code class="xref py py-func docutils literal notranslate"><span class="pre">dorsa_logger.logger.set_line_seperator()</span></code></a> method.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">logger_obj</span><span class="o">.</span><span class="n">set_line_seperator</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="defined-log-messages">
+<h2>Defined Log Messages<a class="headerlink" href="#defined-log-messages" title="Permalink to this heading"></a></h2>
+<p>The logger class allows you to pre-define log messages. This feature is helpful when you have specific
+log messages that you want to reuse throughout your code.</p>
+<p>For more information about this feature see section <a class="reference internal" href="logger_messages.html"><span class="doc">Logger Messages</span></a></p>
+</section>
+<section id="logging-decorators">
+<h2>Logging Decorators<a class="headerlink" href="#logging-decorators" title="Permalink to this heading"></a></h2>
+<p>The logger class provides three logging decorators. These decorators can be used to automatically log the
+start, exceptions, and end of functions with specified log messages.</p>
+<p>For more information about this feature see section <a class="reference internal" href="logger_decorators.html"><span class="doc">Logger Decorators</span></a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="quick_start.html" class="btn btn-neutral float-left" title="Quick Start" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="logger_file_folder_struct.html" class="btn btn-neutral float-right" title="Logger Folder and File Structure" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Reyhane Abtahi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

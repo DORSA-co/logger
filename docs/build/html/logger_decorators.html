@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Logger Decorators &mdash; Logger 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Logger Classes" href="logger_src.html" />
+    <link rel="prev" title="Logger Messages" href="logger_messages.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Logger
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Usage:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick_start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logger_general_features.html">Logger General Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logger_file_folder_struct.html">Logger Folder and File Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logger_messages.html">Logger Messages</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Logger Decorators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#function-start-decorator">Function Start Decorator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#function-exception-decorators">Function Exception Decorators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#function-end-decorator">Function End Decorator</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Sources:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="logger_src.html">Logger Classes</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Logger</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Logger Decorators</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/logger_decorators.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="logger-decorators">
+<h1>Logger Decorators<a class="headerlink" href="#logger-decorators" title="Permalink to this heading"></a></h1>
+<p>The logger class provides decorators to log the start, end, or exceptions of functions.
+You can use these decorators to automatically log function activities.</p>
+<section id="function-start-decorator">
+<h2>Function Start Decorator<a class="headerlink" href="#function-start-decorator" title="Permalink to this heading"></a></h2>
+<p>The <a class="reference internal" href="logger_src.html#dorsa_logger.logger.function_start_decorator" title="dorsa_logger.logger.function_start_decorator"><code class="xref py py-func docutils literal notranslate"><span class="pre">dorsa_logger.logger.function_start_decorator()</span></code></a> decorator is used to log a message
+at the start of a function. It takes the log message (either a predefined message key or a custom log message)
+as an argument. If no message provided, it use a fixed defined message for logging.
+The decorator creates a new log with the specified message at the beginning of the function execution.</p>
+<p>You can use this decorator before defining your function with the <em>&#64;</em> symbol:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@logger_obj</span><span class="o">.</span><span class="n">function_start_decorator</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="c1"># Function logic goes here</span>
+</pre></div>
+</div>
+<p>You can also pass your own log message to it:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@logger_obj</span><span class="o">.</span><span class="n">function_start_decorator</span><span class="p">(</span><span class="n">dorsa_logger</span><span class="o">.</span><span class="n">log_message</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">dorsa_logger</span><span class="o">.</span><span class="n">log_levels</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Function started.&quot;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s2">&quot;ERR000&quot;</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="c1"># Function logic goes here</span>
+</pre></div>
+</div>
+</section>
+<section id="function-exception-decorators">
+<h2>Function Exception Decorators<a class="headerlink" href="#function-exception-decorators" title="Permalink to this heading"></a></h2>
+<p>The <a class="reference internal" href="logger_src.html#dorsa_logger.logger.function_exception_decorator" title="dorsa_logger.logger.function_exception_decorator"><code class="xref py py-func docutils literal notranslate"><span class="pre">dorsa_logger.logger.function_exception_decorator()</span></code></a> is used to log a message
+when an exception occurs within a function.
+It takes the log message (either a predefined message key or a custom log message)
+as an argument. If no message provided, it use a fixed defined message for logging.
+The decorator also provides an option to handle the exception and
+continue with the program execution or re-raise the exception to propagate it further.
+When applied to a function, it creates a new log entry with the specified message
+if an exception occurs within the function.</p>
+<p>You can use this decorator before defining your function with the <em>&#64;</em> symbol:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@logger_obj</span><span class="o">.</span><span class="n">function_exception_decorator</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="c1"># Function logic goes here</span>
+</pre></div>
+</div>
+<p>You can also pass your own log message to it:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@logger_obj</span><span class="o">.</span><span class="n">function_exception_decorator</span><span class="p">(</span><span class="n">dorsa_logger</span><span class="o">.</span><span class="n">log_message</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">dorsa_logger</span><span class="o">.</span><span class="n">log_levels</span><span class="o">.</span><span class="n">EXCEPTION</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;An exception occurred.&quot;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s2">&quot;ERR002&quot;</span><span class="p">),</span> <span class="n">with_handling</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="c1"># Function logic goes here</span>
+</pre></div>
+</div>
+</section>
+<section id="function-end-decorator">
+<h2>Function End Decorator<a class="headerlink" href="#function-end-decorator" title="Permalink to this heading"></a></h2>
+<p>The <a class="reference internal" href="logger_src.html#dorsa_logger.logger.function_end_decorator" title="dorsa_logger.logger.function_end_decorator"><code class="xref py py-func docutils literal notranslate"><span class="pre">dorsa_logger.logger.function_end_decorator()</span></code></a> decorator is used to log a message
+at the end of a function. It takes the log message (either a predefined message key or a custom log message)
+as an argument. If no message provided, it use a fixed defined message for logging.
+The decorator creates a new log entry with the specified message just after the function finishes executing.</p>
+<p>You can use this decorator before defining your function with the <em>&#64;</em> symbol:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@logger_obj</span><span class="o">.</span><span class="n">function_end_decorator</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="c1"># Function logic goes here</span>
+</pre></div>
+</div>
+<p>You can also pass your own log message to it:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@logger_obj</span><span class="o">.</span><span class="n">function_end_decorator</span><span class="p">(</span><span class="n">dorsa_logger</span><span class="o">.</span><span class="n">log_message</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">dorsa_logger</span><span class="o">.</span><span class="n">log_levels</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Function finished.&quot;</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="s2">&quot;ERR001&quot;</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="c1"># Function logic goes here</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="logger_messages.html" class="btn btn-neutral float-left" title="Logger Messages" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="logger_src.html" class="btn btn-neutral float-right" title="Logger Classes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Reyhane Abtahi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

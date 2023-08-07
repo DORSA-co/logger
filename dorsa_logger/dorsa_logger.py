@@ -1,6 +1,5 @@
 import logging
 import os
-from tkinter.messagebox import NO
 from persiantools.jdatetime import JalaliDate
 import datetime
 from functools import wraps
@@ -230,17 +229,17 @@ class time:
         return time
 
 class log_message:
-    def __init__(self, level: int, message: str, code: str = None) -> None:
-        """Initializes a log message object with the specified level, message, and optional code.
+    def __init__(self, level: int, text: str, code: str = None) -> None:
+        """Initializes a log message object with the specified level, text, and optional code.
 
         Args:
             level (int): The level of the log message.
-            message (str): The log message.
+            text (str): The text of the log message.
             code (str, optional): The code associated with the log message. Defaults to None.
         """
 
         self.set_level(level)
-        self.set_message(message)
+        self.set_text(text)
         self.set_code(code)
 
     def set_level(self, level: int) -> None:
@@ -252,14 +251,14 @@ class log_message:
 
         self.level = level
 
-    def set_message(self, message: str) -> None:
-        """Sets the log message.
+    def set_text(self, text: str) -> None:
+        """Sets the text of the log message.
 
         Args:
-            message (str): The log message.
+            text (str): The text of the log message.
         """
 
-        self.message = message
+        self.text = text
 
     def set_code(self, code) -> None:
         """Sets the code associated with the log message.
@@ -278,9 +277,9 @@ class log_message:
         """
 
         if self.code is not None:
-            return '(%s) %s' % (self.code, self.message)
+            return '(%s) %s' % (self.code, self.text)
         else:
-            return self.message
+            return self.text
 
     def get_level(self) -> int:
         """ Returns the level of the log message.
@@ -301,7 +300,7 @@ class log_message:
             bool: True if the log message objects are equal, False otherwise.
         """
 
-        return self.level == __o.level and self.message == __o.message and self.code == __o.code
+        return self.level == __o.level and self.text == __o.text and self.code == __o.code
 
 class defined_log_messages:
     def __init__(self) -> None:
@@ -387,7 +386,7 @@ class const_log_messages:
             object: log message object.
         """
 
-        return log_message(level=log_levels.INFO, message='Function {} started'.format(func_name))
+        return log_message(level=log_levels.INFO, text='Function {} started'.format(func_name))
 
     @staticmethod
     def get_func_exception_message(func_name: str) -> object:
@@ -400,7 +399,7 @@ class const_log_messages:
             object: log message object.
         """
 
-        return log_message(level=log_levels.EXCEPTION, message='Function {} exception'.format(func_name))
+        return log_message(level=log_levels.EXCEPTION, text='Function {} exception'.format(func_name))
 
     @staticmethod
     def get_func_end_message(func_name: str) -> object:
@@ -413,7 +412,7 @@ class const_log_messages:
             object: log message object.
         """
 
-        return log_message(level=log_levels.INFO, message='Function {} ended'.format(func_name))
+        return log_message(level=log_levels.INFO, text='Function {} ended'.format(func_name))
 
 class logger:
     def __init__(
