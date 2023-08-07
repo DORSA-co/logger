@@ -1,3 +1,20 @@
+Metadata-Version: 2.1
+Name: dorsa-logger
+Version: 1.0.0
+Summary: Dorsa Logger Module
+Home-page: https://github.com/DORSA-co/dorsa_logger
+Author: Dorsa-co
+Author-email: info@dorsa-co.ir
+License: Apache License 2.0
+Project-URL: Bug Tracker, https://github.com/DORSA-co/dorsa_logger/issues
+Keywords: dorsa_logger
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Documentation
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Description-Content-Type: text/markdown
+License-File: LICENSE.txt
+
 
 # Logger
 
@@ -6,12 +23,11 @@ Logger is a Python module that provides a logging functionality with various con
 ## Installation
 
 ◌Instructions:  
- 1-pip install dorsa_logger  
+ 1-pip install dorsa_logger (not available yet)  
  2-clone repository
 
 ## Documentaion
-Sphinx documents are not available in docs folder.
-To see that open index.html in docs/build/html folder.
+Sphinx documents are not available yet :(
 
 ## Quick Start
 
@@ -114,5 +130,4 @@ The following date formats are available:
 - HHMM
 - HHMMSS
 - HHMMSSMM
-
 
