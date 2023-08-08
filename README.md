@@ -47,7 +47,7 @@ log_msg = dorsa_logger.log_message(level=dorsa_logger.log_levels.ERROR, message=
 logger_obj.create_new_log(message=log_msg)
 ```
 
-5  Customize the logger configuration by changing the parameters passed to the `logger` constructor or using setter functions of logger object. For example, you can set a different main folder path, log levels, date and time formats, and more. for more detailes see [Example1](Examples/example1.py)
+5  Customize the logger configuration by changing the parameters passed to the `logger` constructor or using setter functions of logger object. For example, you can set a different main folder path, log levels, date and time formats, and more. for more detailes see [Example1](https://github.com/DORSA-co/dorsa_logger/Examples/example1.py)
 
 ## Predefined Log Messages
 
