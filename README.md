@@ -10,7 +10,7 @@ Logger is a Python module that provides a logging functionality with various con
  2-clone repository
 
 ## Documentaion
-Sphinx documents are not available in docs folder.
+Sphinx documents are available in docs folder.
 To see that open index.html in docs/build/html folder.
 
 ## Quick Start
